@@ -2,6 +2,7 @@ module BBVI
 
 using Distributions
 using StatsFuns
+using SpecialFunctions
 
 export score
 

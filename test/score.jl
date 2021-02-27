@@ -24,4 +24,18 @@ finite_diff_grad(f, x::Real; delta=1e-4) = (f(x) - f(x - delta)) / delta
       @test g[2] ≈ gsigma_approx atol=1e-3
     end
   end
+
+  @testset "Gamma" begin
+    Random.seed!(0)
+    shapes = rand(2) * 3
+    scales = rand(2) * 3
+    zs = randn(2)
+    for shape in shapes, scale in scales, z in zs
+      g = score(Gamma(shape, scale), z)
+      gshape_approx = finite_diff_grad(x -> gammalogpdf(x, scale, z), shape)
+      gscale_approx = finite_diff_grad(x -> gammalogpdf(shape, x, z), scale)
+      @test g[1] ≈ gshape_approx atol=1e-3
+      @test g[2] ≈ gscale_approx atol=1e-3
+    end
+  end
 end

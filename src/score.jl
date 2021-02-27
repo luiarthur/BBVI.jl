@@ -20,6 +20,19 @@ function score(q::Normal, z::Real)
   return (gmu, gsigma)
 end
 
+
+"""
+Return gradient of logpdf (score) of gamma w.r.t. parameters (shape, scale).
+`z` is a gamma realization.
+"""
+function score(q::Gamma, z::Real)
+  shape, scale = params(q)
+  gshape = log(z) - digamma(shape) - log(scale)
+  gscale = z / scale^2 - shape / scale
+  return (gshape, gscale)
+end
+
+
 # TODO: Implement for
 # - Logistic
 # - TDist
