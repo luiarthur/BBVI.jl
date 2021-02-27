@@ -1,7 +1,9 @@
 using BBVI
+using BBVI.Distributions
+using BBVI.StatsFuns
 using Test
+using Random
 
 @testset "BBVI" begin
-  # TODO: Remove this test.
-  @test BBVI.greet("Arthur") == "Hello, Arthur!"
+  include("gradlogq.jl")
 end

@@ -1,6 +1,11 @@
 module BBVI
 
-"""TODO: Remove this function."""
-greet(name::String) = "Hello, $(name)!"
+using Distributions
+using StatsFuns
+
+export gradlogq
+
+include("core.jl")
+include("gradlogq.jl")
 
 end # module
