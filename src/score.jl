@@ -58,8 +58,33 @@ function score(q::Beta, z::Real)
 end
 
 
+"""
+Return gradient of logpdf (score) of dirichlet w.r.t. parameters (alpha).
+`z` is a dirichlet realization.
+"""
+function score(q::Dirichlet, z::AbstractVector{<:Real})
+  a = collect(q.alpha)
+  return (digamma(sum(a)) .- digamma.(a) + log.(z), )
+end
+
+
+"""
+Return vector of gradients w.r.t. parameters for vector of univariate distributions.
+"""
+function score(qs::AbstractVector{<:UnivariateDistribution}, zs::AbstractVector{<:Real})
+  return score.(qs, zs)
+end
+
+
+"""
+Return vector of gradients w.r.t. parameters for matrix of univariate distributions.
+"""
+function score(qs::AbstractMatrix{<:UnivariateDistribution}, zs::AbstractMatrix{<:Real})
+  return score.(qs, zs)
+end
+
+
 # TODO: Implement for
-# - Dirichlet
 # - LogNormal
 # - Logistic
 # - NegativeBinomial
