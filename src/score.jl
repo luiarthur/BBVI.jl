@@ -33,9 +33,32 @@ function score(q::Gamma, z::Real)
 end
 
 
+"""
+Return gradient of logpdf (score) of gamma w.r.t. parameters (shape, scale).
+`z` is a gamma realization.
+"""
+function score(q::InverseGamma, z::Real)
+  shape, scale = params(q)
+  gshape = -digamma(shape) + log(scale) - log(z)
+  gscale = shape/scale - 1 / z
+  return (gshape, gscale)
+end
+
+
+"""
+Return gradient of logpdf (score) of beta w.r.t. parameters (a, b).
+`z` is a beta realization.
+"""
+function score(q::Beta, z::Real)
+  a, b = params(q)
+  digamma_a_plus_b = digamma(a + b)
+  ga = digamma_a_plus_b - digamma(a) + log(z)
+  gb = digamma_a_plus_b - digamma(b) + log1p(-z)
+  return (ga, gb)
+end
+
+
 # TODO: Implement for
-# - Beta
-# - InverseGamma
 # - Dirichlet
 # - LogNormal
 # - Logistic
