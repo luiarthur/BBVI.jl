@@ -34,14 +34,12 @@ end
 
 
 # TODO: Implement for
-# - Logistic
-# - TDist
-# - Gamma
-# - LogNormal
-# - InverseGamma
-# - Binomial
-# - Poisson
-# - NegativeBinomial
 # - Beta
-# - Uniform
+# - InverseGamma
+# - Dirichlet
+# - LogNormal
+# - Logistic
+# - NegativeBinomial
+# - Binomial
+# - TDist
 # - LogitNormal
