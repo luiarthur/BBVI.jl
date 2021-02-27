@@ -6,7 +6,8 @@ using SpecialFunctions
 
 export score
 
-include("core.jl")
+include("opt.jl")
+include("BBVIEngine.jl")
 include("score.jl")
 
 end # module
