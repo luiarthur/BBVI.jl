@@ -3,9 +3,9 @@ module BBVI
 using Distributions
 using StatsFuns
 
-export gradlogq
+export score
 
 include("core.jl")
-include("gradlogq.jl")
+include("score.jl")
 
 end # module

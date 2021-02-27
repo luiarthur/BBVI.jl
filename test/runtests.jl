@@ -5,5 +5,5 @@ using Test
 using Random
 
 @testset "BBVI" begin
-  include("gradlogq.jl")
+  include("score.jl")
 end

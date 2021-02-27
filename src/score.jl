@@ -1,13 +1,17 @@
 """
-Return gradient of logpdf of bernoulli w.r.t. variational parameters.
+Return gradient of logpdf (score) of bernoulli w.r.t. parameters (p,).
 `z` is a Bernoulli realization.
 """
-function gradlogq(q::Bernoulli, z::Real)
+function score(q::Bernoulli, z::Real)
   return (z / q.p - (1 - z) / (1 - q.p), )
 end
 
 
-function gradlogq(q::Normal, z::Real)
+"""
+Return gradient of logpdf (score) of normal w.r.t. parameters (mu, sigma).
+`z` is a normal realization.
+"""
+function score(q::Normal, z::Real)
   sigma = std(q)
   sigmasq = var(q)
   mu = mean(q)
